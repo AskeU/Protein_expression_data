@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 ##Find path##
-path = "C:/Users/askung/OneDrive - Danmarks Tekniske Universitet/WP1/Automation_Work/2023_08_11_Calm_mem/Data"
+path = "C:/Users/askung/OneDrive - Danmarks Tekniske Universitet/WP1/Automation_Work/2023_11_16_p85a_1000rpm_37"
 
 plt.rcParams['font.size'] = 25
 
@@ -125,7 +125,7 @@ for f in FullCell:
 #Make data for "Full_Cell"
 Full_Info= []
 
-Full_Filler=np.array(Full_Filler)
+#Full_Filler=np.array(Full_Filler)
 
 for i in range(len(Full_Filler)):
     Full_Info.append(Full_Filler[i][1])
@@ -152,7 +152,7 @@ for f in Cytosol:
 
 Cytosol_Info= []
 
-Cytosol_Filler=np.array(Cytosol_Filler)
+#Cytosol_Filler=np.array(Cytosol_Filler)
 for i in range(len(Cytosol_Filler)):
     Cytosol_Info.append(Cytosol_Filler[i][1])
 
@@ -255,7 +255,7 @@ for plates in range(int(Full_Data["Plate"].astype(int).max())):
     sns.heatmap(df, vmax=np.max(Control_Data), annot=True, cmap="RdYlGn", yticklabels=Index, xticklabels=[1,2,3,4,5,6,7,8,9,10,11,12]).set_title(f'Full_Lum: Plate{plates+1}', fontsize=25)
 
     plt.show()
-#Make heatmap of full_Cell
+#Make heatmap of cytosol
     Number_Pos =0
     Heat_C = np.zeros(shape=(8,12))
     for rows in range(8):

@@ -23,7 +23,7 @@ print(os.getcwd())
 
 ###Import scripts
 from Double_barcode_Demultiplexer_vectorized import NGS_Demultiplexer_vectorized
-from Demultiplexed_To_Stuctured_With_Lum_data import demultiplex_to_lum
+from Demultiplexed_To_Stuctured_With_Lum_data_noplots import demultiplex_to_lum
 from Merger_blast import blaster
 from Merger_blast import Merger
 
@@ -46,35 +46,35 @@ NGS_path = "C:/Users/askung/OneDrive - Danmarks Tekniske Universitet/WP1/NGS/"
 #Fill in "First_primers_used (For NGS), ORF_length and Alignment_Data
 #Path to find merger data 
 
-Alignment_Data=f'{NGS_path}/2023_07_26_spa_tf3/TF3_alignment'
-Path_With_CSVname=f'{Alignment_Data}Merged_Nanopore.csv'
+Alignment_Data=f'{NGS_path}2023_11_09_p85a_copy'
+Path_With_CSVname=f'{Alignment_Data}/Merged_Nanopore.csv'
 
 #Which was the first primer for NGS?
-First_primer_used = 25 #(For NGS data)
+First_primer_used = 1 #(For NGS data, use 1 or 17 if double-run on Hamilton)
 #How long was the sequence?
-ORF_Length = 885
-
+ORF_Length = 2169
 
 
 
 #Path to find luminescence data from Hamilton (Different path than the rest)
-luminescence_path = "C:/Users/askung/OneDrive - Danmarks Tekniske Universitet/WP1/Automation_Work/2023_07_07_SpA_TF3"
+luminescence_path = "C:/Users/askung/OneDrive - Danmarks Tekniske Universitet/WP1/Automation_Work/2023_11_09_p85a"
 
 #FastQ files (For merger)--> NOT BAM files
-FastQ_path = f'{NGS_path}/2023_07_26_spa_tf3'
+FastQ_path = f'{NGS_path}2023_08_16_Calm_mem_2/pass'
 
 
 #########Script-paths below, not needed to fill########
 
-
+'''
 #Merger combines the data and finds the alignment direction
 Merger_path = f'{path}Nanopore_Merger.py'
 #Path for running "Demultiplex_script"
 Demultiplex_Path = f'{path}Double_barcode_Demultiplexer.py'
 #Path for running "After_Demultiplex_script"
-AfterDemultiplex_Path = f'{path}Demultiplexed_To_Stuctured_With_Lum_data.py'
+AfterDemultiplex_Path = f'{path}Demultiplexed_To_Stuctured_With_Lum_data_8samples.py'
 #Outputs for data analysis
-
+'''
+'''
 #main_blaster blasts the fastQ´s vs the "genome". Create them by running 
 #C:/blast/bin/makeblastdb.exe -in "C:/blast/BLAST_DBs/[fasta_genome].fa" -dbtype nucl -out [genome]_db
 blaster(database,Alignment_Data,FastQ_path)
@@ -98,6 +98,6 @@ after_demultiplex_qc.to_csv(f'{Alignment_Data}/after_demultiplex.csv', index = F
 print("Done with demultiplex and QC")
 
 #Run the secondary data-crunching with luminescence-data
-
+'''
 NGS_Filtered = demultiplex_to_lum(Alignment_Data, luminescence_path, First_primer_used, ORF_Length)
 print("Done with script")
